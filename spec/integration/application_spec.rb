@@ -2,6 +2,7 @@ require "spec_helper"
 require "rack/test"
 require_relative '../../app'
 
+
 describe Application do
   # This is so we can use rack-test helper methods.
   include Rack::Test::Methods
@@ -44,5 +45,14 @@ describe Application do
 
       expect(response.body).to include('Wng')
     end
+  end
+
+  context 'GET /albums/:id' do
+    it 'should return info about album 2' do
+      response = get('/albums/2')
+      expect(response.status).to eq 200
+      expect(response.body).to include('<h1>Susa</h1>')
+    end
+    
   end
 end

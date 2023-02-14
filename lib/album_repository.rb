@@ -31,12 +31,14 @@ class AlbumRepository
     sql = 'SELECT id, title, release_year, artist_id FROM albums WHERE id = $1;'
     result_set = DatabaseConnection.exec_params(sql, [id])
 
+
     album = Album.new
     album.id = result_set[0]['id'].to_i
     album.title = result_set[0]['title']
     album.release_year = result_set[0]['release_year']
     album.artist_id = result_set[0]['artist_id'].to_i
 
+    p album.title
     return album
   end
 
